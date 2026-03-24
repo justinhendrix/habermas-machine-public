@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <footer className="text-center text-xs text-gray-400 py-6 px-4">
           A pedagogical simulation inspired by{' '}
-          <a href="https://www.science.org/doi/10.1126/science.adq2852" className="underline" target="_blank" rel="noopener">
+          <a href="https://arxiv.org/pdf/2601.05904" className="underline" target="_blank" rel="noopener">
             &ldquo;Can AI Mediation Improve Democratic Deliberation?&rdquo;
           </a>
           {' '}· Not a validated civic decision system.

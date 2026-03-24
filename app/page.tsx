@@ -50,7 +50,7 @@ export default function HomePage() {
           <p>
             This is a classroom simulation of <strong>AI-mediated democratic deliberation</strong>,
             inspired by the research protocol described in{' '}
-            <em>&ldquo;Can AI Mediation Improve Democratic Deliberation?&rdquo;</em> (Tessler et al., Science 2024).
+            <em>&ldquo;Can AI Mediation Improve Democratic Deliberation?&rdquo;</em> (Tessler et al., arXiv 2026).
           </p>
           <p className="font-medium text-gray-700">How it works:</p>
           <ol className="list-decimal list-inside space-y-1 text-sm">
