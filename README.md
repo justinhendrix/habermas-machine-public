@@ -2,7 +2,7 @@
 
 A lightweight web app for running AI-mediated group deliberation in a classroom setting. Students write opinions, rank AI-generated group statements, critique the winner, and compare initial vs. revised statements.
 
-Inspired by the research protocol in ["Can AI Mediation Improve Democratic Deliberation?"](https://www.science.org/doi/10.1126/science.adq2852) (Tessler et al., Science 2024). This is a **pedagogical simulation**, not a validated civic decision system.
+Inspired by the research protocol in ["Can AI Mediation Improve Democratic Deliberation?"]([https://www.science.org/doi/10.1126/science.adq2852](https://arxiv.org/abs/2601.05904)) (Tessler et al., arXiv 2026). This is a **pedagogical simulation**, not a validated civic decision system.
 
 ## Quick Start
 
