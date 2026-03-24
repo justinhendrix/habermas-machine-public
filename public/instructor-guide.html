@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habermas Machine — Instructor Guide</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a1a; line-height: 1.7; }
+  h1 { font-size: 1.6rem; border-bottom: 3px solid #1d5d9e; padding-bottom: 0.5rem; }
+  h2 { font-size: 1.2rem; color: #1d5d9e; margin-top: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 0.3rem; }
+  h3 { font-size: 1rem; margin-top: 1.5rem; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.9rem; }
+  th, td { border: 1px solid #ccc; padding: 0.5rem 0.7rem; text-align: left; }
+  th { background: #f0f4f8; font-weight: bold; }
+  .phase { background: #e8f0fe; font-weight: bold; }
+  .note { background: #fff8e1; border-left: 4px solid #f9a825; padding: 0.7rem 1rem; margin: 1rem 0; font-size: 0.9rem; }
+  .tip { background: #e8f5e9; border-left: 4px solid #43a047; padding: 0.7rem 1rem; margin: 1rem 0; font-size: 0.9rem; }
+  ol, ul { padding-left: 1.5rem; }
+  li { margin-bottom: 0.4rem; }
+  code { background: #f0f0f0; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.85em; }
+  .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd; font-size: 0.8rem; color: #888; }
+  @media print {
+    body { margin: 0; font-size: 11pt; }
+    .no-print { display: none; }
+    h2 { page-break-before: auto; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Habermas Machine<br><span style="font-size: 0.7em; font-weight: normal; color: #555;">Instructor Guide — Classroom Deliberation Simulator</span></h1>
+
+<p>This guide walks you through running an AI-mediated group deliberation exercise in a 90-minute Zoom or in-person class session. The exercise is inspired by the research protocol in <em>"Can AI Mediation Improve Democratic Deliberation?"</em> (Tessler et al., <em>Science</em>, 2024).</p>
+
+<div class="note">
+<strong>Important:</strong> This is a pedagogical simulation, not a validated civic decision system. The AI may make mistakes in summarizing opinions — that's partly the point of the exercise.
+</div>
+
+<h2>Before Class</h2>
+
+<h3>Setup Checklist</h3>
+<ol>
+  <li>Go to your deployment URL + <code>/instructor</code></li>
+  <li>Enter your instructor secret</li>
+  <li>Choose or write a deliberation question (see suggestions below)</li>
+  <li>Set group size (recommended: 4–6 students)</li>
+  <li>Click <strong>Create Session</strong></li>
+  <li>Note the <strong>6-character session code</strong> — you'll share this with students</li>
+  <li>Test the flow yourself: open the student URL in an incognito window, join with a test name</li>
+</ol>
+
+<h3>Suggested Deliberation Questions</h3>
+<ul>
+  <li>Should AI systems be required to disclose when they are interacting with humans?</li>
+  <li>Should social media platforms be liable for algorithmic amplification of harmful content?</li>
+  <li>Should governments ban the use of facial recognition technology in public spaces?</li>
+  <li>Should there be a universal basic income to address AI-driven job displacement?</li>
+  <li>Should large language models be regulated as public utilities?</li>
+  <li>Should children under 16 be prohibited from using social media?</li>
+</ul>
+
+<div class="tip">
+<strong>Tip:</strong> The best questions have genuine disagreement among reasonable people. Avoid questions where your class is likely to be unanimous — the exercise is most illuminating when the AI must navigate real differences.
+</div>
+
+<h2>Run of Show (90 Minutes)</h2>
+
+<table>
+  <tr><th>Time</th><th>Duration</th><th>Phase</th><th>What Happens</th><th>Your Actions</th></tr>
+  <tr>
+    <td>0:00</td><td>10 min</td><td>Intro</td>
+    <td>Explain the exercise, its connection to the research paper, and what students will do</td>
+    <td>Share screen showing the student-facing explainer on the homepage</td>
+  </tr>
+  <tr>
+    <td>0:10</td><td>5 min</td><td class="phase">JOINING</td>
+    <td>Students join via session code</td>
+    <td>Share code in Zoom chat and on screen. Watch participant count on dashboard. Click <strong>Start Deliberation</strong> when ready.</td>
+  </tr>
+  <tr>
+    <td>0:15</td><td>10 min</td><td class="phase">WRITING</td>
+    <td>Students write individual opinions (100–250 words)</td>
+    <td>Monitor per-group submission counts. When most have submitted, click <strong>Generate All Initial Candidates</strong>, then <strong>Advance to Ranking</strong>.</td>
+  </tr>
+  <tr>
+    <td>0:25</td><td>3 min</td><td>Generation</td>
+    <td>AI generates 4 candidate group statements per group</td>
+    <td>Wait for generation to complete (~5–10 seconds per group). Advance when ready.</td>
+  </tr>
+  <tr>
+    <td>0:28</td><td>10 min</td><td class="phase">RANKING INITIAL</td>
+    <td>Students read and rank 4 candidates (1st–4th)</td>
+    <td>Monitor ranking counts. When most have ranked, click <strong>Tally All Votes</strong>, then <strong>Advance to Critique</strong>.</td>
+  </tr>
+  <tr>
+    <td>0:38</td><td>2 min</td><td>Tally</td>
+    <td>Borda count selects a winner</td>
+    <td>Optionally project the winning statements for each group.</td>
+  </tr>
+  <tr>
+    <td>0:40</td><td>10 min</td><td class="phase">CRITIQUE</td>
+    <td>Students critique the winning statement: what's good, what's missing, what's unfair, what to change</td>
+    <td>Monitor critique counts. When most have submitted, click <strong>Generate All Revised Candidates</strong>, then <strong>Advance</strong>.</td>
+  </tr>
+  <tr>
+    <td>0:50</td><td>3 min</td><td>Generation</td>
+    <td>AI revises statements based on critiques</td>
+    <td>Wait for generation. Advance when ready.</td>
+  </tr>
+  <tr>
+    <td>0:53</td><td>8 min</td><td class="phase">RANKING REVISED</td>
+    <td>Students rank revised candidates</td>
+    <td>Monitor, tally, advance.</td>
+  </tr>
+  <tr>
+    <td>1:01</td><td>2 min</td><td>Tally</td>
+    <td>Revised winner selected</td>
+    <td>Advance to Comparison.</td>
+  </tr>
+  <tr>
+    <td>1:03</td><td>5 min</td><td class="phase">COMPARISON</td>
+    <td>Students choose: initial or revised winner? Plus optional reflection ratings.</td>
+    <td>When most have voted, click <strong>Complete Session</strong>.</td>
+  </tr>
+  <tr>
+    <td>1:08</td><td>20 min</td><td>Debrief</td>
+    <td>Class discussion</td>
+    <td>Project group results. Optionally click <strong>Generate Debrief</strong> for AI-generated discussion guide. Use questions below.</td>
+  </tr>
+  <tr>
+    <td>1:28</td><td>2 min</td><td>Wrap-up</td>
+    <td>Closing thoughts</td>
+    <td></td>
+  </tr>
+</table>
+
+<div class="tip">
+<strong>Pacing tip:</strong> Don't wait for 100% completion before advancing. If 80% of a group has submitted, that's enough. Stragglers can catch up or skip. The exercise should feel brisk, not stalled.
+</div>
+
+<h2>The Protocol Explained</h2>
+
+<p>Share this with students at the start:</p>
+
+<ol>
+  <li><strong>Write</strong> — You write your individual opinion on a question.</li>
+  <li><strong>Generate</strong> — An AI reads all opinions in your group and drafts 4 candidate "group statements" that try to capture common ground.</li>
+  <li><strong>Rank</strong> — You rank the 4 candidates from best to worst. The group selects a winner using Borda count voting.</li>
+  <li><strong>Critique</strong> — You critique the winning statement: what's good, what's missing, what feels unfair.</li>
+  <li><strong>Revise</strong> — The AI revises the statements using your critiques.</li>
+  <li><strong>Rank again</strong> — You rank the revised candidates. A new winner is chosen.</li>
+  <li><strong>Compare</strong> — You decide: was the revised statement better than the initial one?</li>
+</ol>
+
+<h3>Ranking Method: Borda Count</h3>
+<p>Each student ranks all 4 candidates. Points are assigned:</p>
+<ul>
+  <li>1st choice → 4 points</li>
+  <li>2nd choice → 3 points</li>
+  <li>3rd choice → 2 points</li>
+  <li>4th choice → 1 point</li>
+</ul>
+<p>The candidate with the most total points wins. Ties are broken by number of first-place votes. This is a simple, transparent method — other methods (instant runoff, Condorcet) could produce different results.</p>
+
+<h2>Debrief Discussion Questions</h2>
+
+<h3>About the AI's Role</h3>
+<ol>
+  <li>Did the AI accurately capture your group's views? What did it get right or wrong?</li>
+  <li>Were minority perspectives preserved, or were they flattened into consensus language?</li>
+  <li>Did the AI invent any positions that nobody actually held?</li>
+  <li>How did the 4 candidates differ from each other? Were the differences meaningful?</li>
+</ol>
+
+<h3>About the Process</h3>
+<ol start="5">
+  <li>Did the critique-and-revision cycle actually improve the statement? What changed?</li>
+  <li>How does <em>ranking</em> 4 options differ from <em>writing</em> a group statement yourself? What's gained or lost?</li>
+  <li>Could a different ranking method (e.g., majority rule, consensus requirement) have changed the outcome?</li>
+  <li>Did you feel represented in the winning statement? Why or why not?</li>
+</ol>
+
+<h3>About AI and Democracy</h3>
+<ol start="9">
+  <li>Would you trust a process like this for real civic decisions (e.g., town halls, citizen assemblies)? What would need to change?</li>
+  <li>Who benefits from AI-mediated deliberation? Who might be disadvantaged?</li>
+  <li>Does AI mediation <em>clarify</em> disagreement or <em>obscure</em> it?</li>
+  <li>What's the difference between "common ground" and "forced consensus"?</li>
+</ol>
+
+<h2>Pedagogical Themes</h2>
+
+<p>This exercise is designed to help students think critically about:</p>
+
+<ul>
+  <li><strong>Common ground vs. forced consensus</strong> — Does synthesizing views help groups find agreement, or does it paper over real differences?</li>
+  <li><strong>Fairness in aggregation</strong> — The choice of voting method shapes the outcome. Borda count, majority rule, and consensus each encode different values.</li>
+  <li><strong>Minority viewpoint representation</strong> — AI synthesis can either amplify or silence minority perspectives. Watch for this.</li>
+  <li><strong>Generation vs. selection</strong> — Students don't write the group statement; they choose among AI-generated options. What does this do to ownership and agency?</li>
+  <li><strong>Critique-and-revision as deliberation</strong> — The paper's key insight: iterative feedback can improve AI-mediated outcomes. Does it?</li>
+  <li><strong>Transparency and legibility</strong> — Can people meaningfully participate in AI-mediated processes if they don't understand how the AI works?</li>
+</ul>
+
+<h2>Troubleshooting</h2>
+
+<table>
+  <tr><th>Problem</th><th>Solution</th></tr>
+  <tr><td>Student can't join</td><td>Check they're using the correct code (case-insensitive). They can rejoin with the same name if disconnected.</td></tr>
+  <tr><td>Student is stuck on "Waiting"</td><td>They may need to refresh. The page polls every 3 seconds but a hard refresh helps if state is stale.</td></tr>
+  <tr><td>"Generate" button takes too long</td><td>AI generation takes 5–15 seconds per group. Be patient. If it fails, click again — the API is idempotent.</td></tr>
+  <tr><td>A group has no opinions submitted</td><td>You can still advance — empty groups will simply have no candidates generated.</td></tr>
+  <tr><td>Student joined after groups were assigned</td><td>Late joiners won't be in a group. They can observe and participate in the debrief discussion instead.</td></tr>
+  <tr><td>I need to go back a phase</td><td>The current version only advances forward. If something goes wrong, you can create a new session.</td></tr>
+</table>
+
+<h2>Connection to the Research</h2>
+
+<p>The original Habermas Machine protocol (Tessler et al., 2024) used:</p>
+<ul>
+  <li>A specially <strong>trained generative model</strong> fine-tuned to produce group statements</li>
+  <li>A <strong>personalized reward model</strong> trained on individual preferences</li>
+  <li><strong>Bayesian aggregation</strong> over individual reward models to select winners</li>
+  <li>Large-scale experiments with <strong>thousands of participants</strong> in the UK</li>
+</ul>
+
+<p>This classroom version uses:</p>
+<ul>
+  <li><strong>Prompt-based generation</strong> with a general-purpose LLM (Claude Haiku)</li>
+  <li><strong>Borda count voting</strong> instead of personalized reward models</li>
+  <li><strong>Small groups</strong> (4–6 students) instead of population-scale samples</li>
+  <li><strong>Manual phase advancement</strong> by the instructor</li>
+</ul>
+
+<p>The pedagogical logic is preserved: individual input → AI synthesis → selection → critique → revision → comparison. But this is a <em>simulation</em> of the protocol, not a reproduction of the research.</p>
+
+<div class="footer">
+  <p>Habermas Machine Classroom Simulator · Built for educational use<br>
+  Inspired by <a href="https://www.science.org/doi/10.1126/science.adq2852">"Can AI Mediation Improve Democratic Deliberation?"</a> (Tessler et al., <em>Science</em>, 2024)</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Phase {
+  JOINING
+  WRITING
+  RANKING_INITIAL
+  CRITIQUE
+  RANKING_REVISED
+  COMPARISON
+  COMPLETE
+}
+
+enum Round {
+  INITIAL
+  REVISED
+}
+
+enum Preference {
+  INITIAL
+  REVISED
+}
+
+model Session {
+  id               String   @id @default(cuid())
+  code             String   @unique
+  question         String
+  groupSize        Int      @default(5)
+  phase            String   @default("JOINING")
+  instructorSecret String
+  createdAt        DateTime @default(now())
+
+  participants        Participant[]
+  groups              Group[]
+  opinions            Opinion[]
+  candidateStatements CandidateStatement[]
+  critiques           Critique[]
+  finalPreferences    FinalPreference[]
+}
+
+model Group {
+  id        String @id @default(cuid())
+  sessionId String
+  name      String
+  number    Int
+
+  session             Session              @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  participants        Participant[]
+  opinions            Opinion[]
+  candidateStatements CandidateStatement[]
+  critiques           Critique[]
+  finalPreferences    FinalPreference[]
+
+  @@index([sessionId])
+}
+
+model Participant {
+  id             String   @id @default(cuid())
+  sessionId      String
+  groupId        String?
+  displayName    String
+  reconnectToken String   @default("")
+  joinedAt       DateTime @default(now())
+
+  session          Session           @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  group            Group?            @relation(fields: [groupId], references: [id])
+  opinions         Opinion[]
+  rankings         Ranking[]
+  critiques        Critique[]
+  finalPreferences FinalPreference[]
+
+  @@index([sessionId])
+  @@index([groupId])
+}
+
+model Opinion {
+  id            String   @id @default(cuid())
+  participantId String
+  groupId       String
+  sessionId     String
+  text          String
+  createdAt     DateTime @default(now())
+
+  participant Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  group       Group       @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  session     Session     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([groupId])
+  @@index([sessionId])
+  @@index([participantId])
+}
+
+model CandidateStatement {
+  id             String  @id @default(cuid())
+  groupId        String
+  sessionId      String
+  round          String  // INITIAL or REVISED
+  candidateIndex Int     // 0-3
+  text           String
+  rationale      String
+  bordaScore     Int     @default(0)
+  isWinner       Boolean @default(false)
+
+  group    Group     @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  session  Session   @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  rankings Ranking[]
+
+  @@index([groupId])
+  @@index([sessionId])
+  @@index([groupId, round])
+}
+
+model Ranking {
+  id                   String @id @default(cuid())
+  participantId        String
+  candidateStatementId String
+  rank                 Int    // 1-4
+
+  participant        Participant        @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  candidateStatement CandidateStatement @relation(fields: [candidateStatementId], references: [id], onDelete: Cascade)
+
+  @@index([participantId])
+  @@index([candidateStatementId])
+}
+
+model Critique {
+  id            String @id @default(cuid())
+  participantId String
+  groupId       String
+  sessionId     String
+  good          String @default("")
+  missing       String @default("")
+  unfair        String @default("")
+  changes       String @default("")
+
+  participant Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  group       Group       @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  session     Session     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([groupId])
+  @@index([sessionId])
+  @@index([participantId])
+}
+
+model FinalPreference {
+  id              String  @id @default(cuid())
+  participantId   String
+  groupId         String
+  sessionId       String
+  preference      String  // INITIAL or REVISED
+  feltRepresented Int?
+  processFair     Int?
+  revisedImproved Int?
+  reflection      String?
+
+  participant Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  group       Group       @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  session     Session     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([groupId])
+  @@index([sessionId])
+  @@index([participantId])
+}
